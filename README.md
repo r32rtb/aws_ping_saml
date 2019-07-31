@@ -11,10 +11,10 @@ $ pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org -r r
 More info:
 [Boto config tutorial](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/quickstart.html)
 ```
-Update with Ping Federate URL and if MFA is needed. 
+Update with Ping Federate URL and if MFA is needed. If MITM proxy used, add the ca_bundle.crt to the folder and adjust the script.
 ```
 ```
-Ping Federate will parse AD groups and create assertion for role switcher.  The OGNL file can be adjusted accordingly to parse the groups for the assertion.  The current format is AWS-SSO-<AWS ROLE>-<AWS ACCOUNT NUMBER>
+Ping Federate will parse AD groups and create assertion for role switcher.  The OGNL file can be adjusted accordingly to parse the groups for the assertion.  The current format for the AD groups is AWS-SSO-<AWS ROLE>-<AWS ACCOUNT NUMBER> and will populate the assertion to provide the role switcher.
 ```
 
 ## Usage
