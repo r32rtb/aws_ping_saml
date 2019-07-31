@@ -20,7 +20,9 @@ Ping Federate will parse AD groups and create assertion for role switcher.
 
 The OGNL file can be adjusted accordingly to parse the groups for the assertion.  
 
-The current format for the AD groups is AWS-SSO-<AWS ROLE>-<AWS ACCOUNT NUMBER> and will populate the assertion to provide the role switcher.
+The current format for the AD groups is 
+AWS-SSO-<AWS ROLE>-<AWS ACCOUNT NUMBER> 
+and will populate the assertion to provide the role switcher.
 ```
 
 ## Usage
