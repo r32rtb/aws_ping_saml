@@ -261,13 +261,15 @@ def main(argv=None):
 
     #(username, password, mfatoken) = saml_connect.logon_info()
     (username, password) = saml_connect.logon_info()
-    saml = saml_connect.get_saml(url, idp_partner, username, [ password, mfatoken ])
+    #saml = saml_connect.get_saml(url, idp_partner, username, [ password, mfatoken ])
+    saml = saml_connect.get_saml(url, idp_partner, username, [ password ])
     while saml is 'Failed':
         print('Invalid Credentials, Try Again!')
         saml_connect = SamlConnector(ssl_verification, region)
         #(username, password, mfatoken) = saml_connect.logon_info()
         (username, password) = saml_connect.logon_info()
-        saml = saml_connect.get_saml(url, idp_partner, username, [ password, mfatoken ])
+        #saml = saml_connect.get_saml(url, idp_partner, username, [ password, mfatoken ])
+        saml = saml_connect.get_saml(url, idp_partner, username, [ password ])
 
     credentials = saml_connect.get_roles(saml. assertion, duration)
     saml_connect.set_creds(credentials, aws_config_file, aws_profile, output_format, region)
