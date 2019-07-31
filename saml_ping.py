@@ -58,7 +58,8 @@ class SamlConnector:
         self.password = str(getpass.getpass())
         #Update if MFA in play
         #self.mfatoken = getpass.getpass("SafeNet TokenCode:")
-        return(self.user, self.password, self.mfatoken)
+        return(self.user, self.password)
+        #return(self.user, self.password, self.mfatoken)
 
     def get_saml(self, url, partner, username, passwords):
         self.r = self.session.get(url + '/idp/startSSO.ping', params={'PartnerSpId': partner}, verify=self.path + "/" + self.cafile)
@@ -258,12 +259,14 @@ def main(argv=None):
     
     saml_connect = SamlConnector(ssl_verification, region)
 
-    (username, password, mfatoken) = saml_connect.logon_info()
+    #(username, password, mfatoken) = saml_connect.logon_info()
+    (username, password) = saml_connect.logon_info()
     saml = saml_connect.get_saml(url, idp_partner, username, [ password, mfatoken ])
     while saml is 'Failed':
         print('Invalid Credentials, Try Again!')
         saml_connect = SamlConnector(ssl_verification, region)
-        (username, password, mfatoken) = saml_connect.logon_info()
+        #(username, password, mfatoken) = saml_connect.logon_info()
+        (username, password) = saml_connect.logon_info()
         saml = saml_connect.get_saml(url, idp_partner, username, [ password, mfatoken ])
 
     credentials = saml_connect.get_roles(saml. assertion, duration)
