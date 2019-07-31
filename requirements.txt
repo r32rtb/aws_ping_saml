@@ -1,0 +1,9 @@
+boto3
+requests
+configparser
+bs4
+lxml
+regex
+pyyaml
+tz
+future

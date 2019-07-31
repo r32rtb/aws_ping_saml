@@ -1,0 +1,7 @@
+#roleName = new java.util.ArrayList(),  
+#groups = #this.get("ds.memberOf")!=null?#this.get("ds.memberOf").getValues():{},  
+#groups.{  #group = #this,  
+#group = new javax.naming.ldap.LdapName(#group),  
+#rdn = #group.getRdn(#group.size() - 1).getValue().toString(),  
+#rdn.matches("(?i).*AWS-SSO-.*")?#roleName.add("arn:aws:iam::" + #group.getRdn(#group.size() - 1).getValue().toString().split("-")[3] + ":role/AWS_SSO_" + #group.getRdn(#group.size() - 1).getValue().toString().split("-")[2] + ",arn:aws:iam::" + #group.getRdn(#group.size() - 1).getValue().toString().split("-")[3] + ":saml-provider/pingfederate") : null },  
+new org.sourceid.saml20.adapter.attribute.AttributeValue(#roleName)
